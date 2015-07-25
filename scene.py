@@ -28,9 +28,23 @@ def random_path(n):
     steps = np.random.random_integers(1, 10, n)/10
     directions = np.random.uniform(0, 2 * np.pi, n)
     directions = smooth(directions)
-    change_in_elevation  = smooth(np.random.uniform(0, 0.01, n))
-    
-    return np.c_[steps, directions, change_in_elevation]
+    floor_dir = ((np.random.uniform(0,1,n) > 0.5).astype(np.float32)*2 - 1)
+    change_floor = np.random.uniform(0,1,n) > 0.9
+    floor_dir[~change_floor] = 0.0
+    floor_dir *= 0.1
+    return np.c_[steps, directions, floor_dir]
+
+def stair_case(n):
+    directions = np.zeros(n)
+    steps = np.ones(n) * 0.1
+    change_in_height = np.round(np.linspace(0,1,n),1)
+    return np.c_[steps, directions, change_in_height]
+
+def spiral_stair_case(n, r):
+    directions = np.linspace(0,r*(2*np.pi)*100, n) % (2 * np.pi)
+    steps = np.ones(n) * 0.01
+    change_in_height = np.round(np.linspace(0,0.5,n),1)
+    return np.c_[steps, directions, change_in_height]
 
 def position(path):
     change_x = path[:, 0] * np.cos(path[:, 1])
@@ -43,4 +57,6 @@ def position(path):
 
     return np.c_[path_x, path_y, path_z]
     
-visualise_path(position(random_path(500)))
+#visualise_path(position(random_path(500)))
+#visualise_path(position(stair_case(100)))
+visualise_path(position(spiral_stair_case(10, 1)))
