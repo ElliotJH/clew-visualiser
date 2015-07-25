@@ -1,2 +1,3 @@
 vispy
 numpy
+requests
