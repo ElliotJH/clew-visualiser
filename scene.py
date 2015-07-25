@@ -56,7 +56,3 @@ def position(path):
     path_z = np.cumsum(change_z)
 
     return np.c_[path_x, path_y, path_z]
-    
-#visualise_path(position(random_path(500)))
-#visualise_path(position(stair_case(100)))
-visualise_path(position(spiral_stair_case(10, 1)))
