@@ -1,0 +1,7 @@
+* Clew Visualiser
+  A visualiser for clews retrieved from [[https://github.com/patricknaish/clew-backend][Clew Backend]]
+** Clew
+   Clew is a tool where someone can record a route through a location
+   using their smartphone. Another user, for example someone who is
+   partially sighted can play this clew back and move through the
+   space more safely as they are taking a route others have used.
