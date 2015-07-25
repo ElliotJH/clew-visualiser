@@ -1,3 +1,4 @@
 vispy
 numpy
 requests
+pandas
