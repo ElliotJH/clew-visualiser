@@ -58,8 +58,8 @@ def spiral_stair_case(n, r):
     return np.c_[steps, directions, change_in_height]
 
 def position(path):
-    change_x = path[:, 0] * np.cos(path[:, 1])
-    change_y = path[:, 0] * np.sin(path[:, 1])
+    change_x = path[:, 0] * np.sin(path[:, 1])
+    change_y = path[:, 0] * np.cos(path[:, 1])
     change_z = path[:, 2]
 
     
