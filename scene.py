@@ -12,11 +12,21 @@ def visualise_path(path):
     vb.clip_method='viewport'
     vb.camera = scene.TurntableCamera(elevation=30, azimuth=30, up='+z')
 
+    a = []
+    col = True
+    for i in range(len(path)):
+        if i == 0:
+            a += [(0.0, 0.0, 1.0, 1.0)]
+        elif col:
+            a += [(1.0, 0.0, 0.0, 1.0)]
+        else:
+            a += [(0.0, 1.0, 0.0, 1.0)]
+        col = not col
     line1 = scene.visuals.Line(pos = path.copy(),
                                method = 'gl',
                                antialias=True,
                                name='line1',
-                               color=(0.8, 0.4, 0.4, 1),
+                               color=a,
                                parent=vb.scene,
                                connect='strip')
 
@@ -56,5 +66,7 @@ def position(path):
     path_x = np.cumsum(change_x)
     path_y = np.cumsum(change_y)
     path_z = np.cumsum(change_z)
-    
-    return np.c_[path_x, path_y, path_z]
+
+    data =  np.c_[path_x, path_y, path_z]
+    z = np.zeros((1,3))
+    return np.concatenate([z, data], axis=0)

@@ -17,10 +17,8 @@ def main():
     host = config.get("server", "host")
     port = config.getint("server", "port")
 
-    print "position"
-    pos = scene.position(read_android.retrieve_test("test_android.tsv"))[0:4]
-    print pos
-    print "---"
+    pos = scene.position(read_android.retrieve_test("test_android.tsv"))[:]
+    #pos = scene.position(scene.spiral_stair_case(100, 3))
     
     scene.visualise_path(pos)
 
